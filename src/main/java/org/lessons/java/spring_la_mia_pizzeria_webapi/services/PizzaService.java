@@ -26,12 +26,15 @@ public class PizzaService {
         this.ingredientRepository = ingredientRepository;
     }
 
+    public Optional<Pizza> findById(Integer id) {
+        return pizzaRepository.findById(id);
+    }
+
     public Pizza getById(Integer id) {
-        Optional<Pizza> pizza = pizzaRepository.findById(id);
+        Optional<Pizza> pizza = findById(id);
         if (pizza.isEmpty()) {
             // throw new NameNotFoundException("Pizza not found");
         }
-
         return pizza.get();
     }
 

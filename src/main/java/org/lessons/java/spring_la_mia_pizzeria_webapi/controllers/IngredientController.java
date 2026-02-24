@@ -1,10 +1,7 @@
 package org.lessons.java.spring_la_mia_pizzeria_webapi.controllers;
 
-import java.util.List;
-
 import org.lessons.java.spring_la_mia_pizzeria_webapi.models.Ingredient;
-import org.lessons.java.spring_la_mia_pizzeria_webapi.models.Pizza;
-import org.lessons.java.spring_la_mia_pizzeria_webapi.repositories.IngredientRepository;
+import org.lessons.java.spring_la_mia_pizzeria_webapi.services.IngredientService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,19 +17,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @RequestMapping("/ingredients")
 public class IngredientController {
-    private IngredientRepository ingredientRepository;
+    private IngredientService ingredientService;
 
-    public IngredientController(IngredientRepository ingredientRepository) {
-        this.ingredientRepository = ingredientRepository;
+    public IngredientController(IngredientService ingredientService) {
+        this.ingredientService = ingredientService;
     }
 
     @GetMapping
     public String index(Model model) {
-        List<Ingredient> ingredients = ingredientRepository.findAll();
-
-        model.addAttribute("ingredients", ingredients);
+        model.addAttribute("ingredients", ingredientService.findAll());
         model.addAttribute("new_ingredient", new Ingredient());
-
         return "ingredients/index";
     }
 
@@ -41,27 +35,17 @@ public class IngredientController {
             @Valid @ModelAttribute("new_ingredient") Ingredient ingredientForm,
             BindingResult bindingResult,
             Model model) {
-
         if (!bindingResult.hasErrors()) {
-            ingredientRepository.save(ingredientForm);
+            ingredientService.save(ingredientForm);
             model.addAttribute("new_ingredient", new Ingredient());
         }
-
-        model.addAttribute("ingredients", ingredientRepository.findAll());
-
+        model.addAttribute("ingredients", ingredientService.findAll());
         return "ingredients/index";
     }
 
     @PostMapping("/delete/{id}")
     public String delete(Model model, @PathVariable("id") Integer ingredientId) {
-        Ingredient ingredient = ingredientRepository.findById(ingredientId).get();
-
-        for (Pizza pizza : ingredient.getPizzas()) {
-            pizza.getIngredients().remove(ingredient);
-        }
-
-        ingredientRepository.delete(ingredient);
-
+        ingredientService.deleteById(ingredientId);
         return "redirect:/ingredients";
     }
 

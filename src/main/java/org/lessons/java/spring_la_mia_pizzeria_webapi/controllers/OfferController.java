@@ -1,9 +1,7 @@
 package org.lessons.java.spring_la_mia_pizzeria_webapi.controllers;
 
-import java.util.Optional;
-
 import org.lessons.java.spring_la_mia_pizzeria_webapi.models.Offer;
-import org.lessons.java.spring_la_mia_pizzeria_webapi.repositories.OfferRepository;
+import org.lessons.java.spring_la_mia_pizzeria_webapi.services.OfferService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,22 +17,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @RequestMapping("/offers")
 public class OfferController {
-    private OfferRepository offerRepository;
+    private OfferService offerService;
 
-    public OfferController(OfferRepository offerRepository) {
-        this.offerRepository = offerRepository;
+    public OfferController(OfferService offerService) {
+        this.offerService = offerService;
     }
 
     @GetMapping("/show/{id}")
     public String show(@PathVariable("id") Integer offerId, Model model) {
-        Optional<Offer> offer = offerRepository.findById(offerId);
-
-        if (offer.isEmpty()) {
+        if (!offerService.existsById(offerId)) {
             return "redirect:/pizzas";
         }
-
-        model.addAttribute("offer", offer.get());
-
+        model.addAttribute("offer", offerService.getById(offerId));
         return "offers/show";
     }
 
@@ -43,22 +37,16 @@ public class OfferController {
         if (bindingResult.hasErrors()) {
             return "offers/create";
         }
-
-        Offer offer = offerRepository.save(offerForm);
-
+        Offer offer = offerService.save(offerForm);
         return "redirect:/pizzas/" + offer.getPizza().getId();
     }
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer offerId, Model model) {
-        Optional<Offer> offer = offerRepository.findById(offerId);
-
-        if (offer.isEmpty()) {
+        if (!offerService.existsById(offerId)) {
             return "redirect:/pizzas";
         }
-
-        model.addAttribute("offer", offer.get());
-
+        model.addAttribute("offer", offerService.getById(offerId));
         return "/offers/edit";
     }
 
@@ -68,19 +56,14 @@ public class OfferController {
         if (bindingResult.hasErrors()) {
             return "/offers/edit";
         }
-
-        Offer offer = offerRepository.save(offerForm);
-
+        Offer offer = offerService.edit(offerForm);
         return "redirect:/pizzas/" + offer.getPizza().getId();
     }
 
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable("id") Integer offerId, Model model) {
-        Integer pizzaId = offerRepository.findById(offerId).get().getPizza().getId();
-
-        offerRepository.deleteById(offerId);
-
-        return "redirect:/pizzas/" + pizzaId;
+        offerService.deleteById(offerId);
+        return "redirect:/pizzas/" + offerService.getById(offerId).getPizza().getId();
     }
 
 }

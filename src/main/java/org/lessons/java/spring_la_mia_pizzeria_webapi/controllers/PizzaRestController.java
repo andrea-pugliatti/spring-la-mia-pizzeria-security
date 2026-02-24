@@ -37,7 +37,6 @@ public class PizzaRestController {
         if (!pizzaService.existsById(id)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
         return new ResponseEntity<>(pizzaService.getById(id), HttpStatus.OK);
     }
 

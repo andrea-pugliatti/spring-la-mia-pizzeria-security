@@ -1,9 +1,9 @@
-package org.lessons.java.spring_la_mia_pizzeria_webapi.services;
+package org.lessons.java.spring_la_mia_pizzeria_security.services;
 
 import java.util.Optional;
 
-import org.lessons.java.spring_la_mia_pizzeria_webapi.models.Offer;
-import org.lessons.java.spring_la_mia_pizzeria_webapi.repositories.OfferRepository;
+import org.lessons.java.spring_la_mia_pizzeria_security.models.Offer;
+import org.lessons.java.spring_la_mia_pizzeria_security.repositories.OfferRepository;
 import org.springframework.stereotype.Service;
 
 @Service

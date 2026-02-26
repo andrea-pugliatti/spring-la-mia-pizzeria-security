@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.lessons.java</groupId>
-	<artifactId>spring-la-mia-pizzeria-webapi</artifactId>
+	<artifactId>spring-la-mia-pizzeria-security</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-la-mia-pizzeria-webapi</name>
+	<name>spring-la-mia-pizzeria-security</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>

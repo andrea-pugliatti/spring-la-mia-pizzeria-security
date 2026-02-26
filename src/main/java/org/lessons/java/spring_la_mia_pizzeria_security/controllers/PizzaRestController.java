@@ -1,9 +1,9 @@
-package org.lessons.java.spring_la_mia_pizzeria_webapi.controllers;
+package org.lessons.java.spring_la_mia_pizzeria_security.controllers;
 
 import java.util.List;
 
-import org.lessons.java.spring_la_mia_pizzeria_webapi.models.Pizza;
-import org.lessons.java.spring_la_mia_pizzeria_webapi.services.PizzaService;
+import org.lessons.java.spring_la_mia_pizzeria_security.models.Pizza;
+import org.lessons.java.spring_la_mia_pizzeria_security.services.PizzaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;

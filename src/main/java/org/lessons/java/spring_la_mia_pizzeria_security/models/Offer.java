@@ -1,4 +1,4 @@
-package org.lessons.java.spring_la_mia_pizzeria_webapi.models;
+package org.lessons.java.spring_la_mia_pizzeria_security.models;
 
 import java.time.LocalDate;
 

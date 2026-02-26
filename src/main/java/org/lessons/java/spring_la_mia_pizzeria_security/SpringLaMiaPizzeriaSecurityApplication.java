@@ -1,13 +1,13 @@
-package org.lessons.java.spring_la_mia_pizzeria_webapi;
+package org.lessons.java.spring_la_mia_pizzeria_security;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringLaMiaPizzeriaWebapiApplication {
+public class SpringLaMiaPizzeriaSecurityApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringLaMiaPizzeriaWebapiApplication.class, args);
+		SpringApplication.run(SpringLaMiaPizzeriaSecurityApplication.class, args);
 	}
 
 }

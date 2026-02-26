@@ -1,19 +1,19 @@
-# EX Spring La Mia Pizzeria - Rest API
+# EX Spring La Mia Pizzeria - Spring Security
 
 ## Consegna
 
 Ricordatevi di sganciare la vostra vecchia repository e di crearne una nuova per questo esercizio, che prosegue il lavoro della pizzeria, dove lo avevate lasciato.
 
-Implementiamo l'accesso alla nostra applicazione anche all’esterno, esponiamo degli endpoint REST!
+Finalmente proteggiamo la nostra applicazione!
 
-Implementiamo quindi i metodi CRUD tramite RestController.
+Abbiamo sviluppato tutte le pagine per gestire la nostra pizzeria (elenco pizze, dettagli singola pizza, creazione, modifica, cancellazione, offerte speciali, ingredienti)…ma vogliamo che chiunque possa effettuare queste operazioni? Sicuramente no!
 
-Diamo la possibilità di :
+Quindi inseriamo l’autenticazione in modo che solo gli utenti registrati possano accedere a queste pagine.
 
-    ottenere la lista di pizze (dobbiamo anche poterle filtrare per titolo)
-    leggere i dettagli di una singola pizza
-    creare una nuova pizza
-    modificare una pizza esistente
-    cancellare una pizza
+Creiamo le entity necessarie e popoliamo a mano i dati degli utenti nel database.
 
-Queste operazioni devono poter essere eseguite tramite Postman, non preoccupiamoci quindi della parte di frontend per ora.
+Sono previsti due ruoli : USER e ADMIN
+
+Chi avrà assegnato come ruolo USER potrà accedere solo alla pagina index e a quella di dettaglio.
+
+Chi invece avrà assegnato come ruolo ADMIN potrà fare tutto.

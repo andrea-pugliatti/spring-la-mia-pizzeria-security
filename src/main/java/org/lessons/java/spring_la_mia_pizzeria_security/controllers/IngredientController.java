@@ -1,7 +1,7 @@
-package org.lessons.java.spring_la_mia_pizzeria_webapi.controllers;
+package org.lessons.java.spring_la_mia_pizzeria_security.controllers;
 
-import org.lessons.java.spring_la_mia_pizzeria_webapi.models.Ingredient;
-import org.lessons.java.spring_la_mia_pizzeria_webapi.services.IngredientService;
+import org.lessons.java.spring_la_mia_pizzeria_security.models.Ingredient;
+import org.lessons.java.spring_la_mia_pizzeria_security.services.IngredientService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

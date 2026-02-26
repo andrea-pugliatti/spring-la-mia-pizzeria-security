@@ -1,14 +1,14 @@
-package org.lessons.java.spring_la_mia_pizzeria_webapi.services;
+package org.lessons.java.spring_la_mia_pizzeria_security.services;
 
 import java.util.List;
 import java.util.Optional;
 
-import org.lessons.java.spring_la_mia_pizzeria_webapi.models.Ingredient;
-import org.lessons.java.spring_la_mia_pizzeria_webapi.models.Offer;
-import org.lessons.java.spring_la_mia_pizzeria_webapi.models.Pizza;
-import org.lessons.java.spring_la_mia_pizzeria_webapi.repositories.IngredientRepository;
-import org.lessons.java.spring_la_mia_pizzeria_webapi.repositories.OfferRepository;
-import org.lessons.java.spring_la_mia_pizzeria_webapi.repositories.PizzaRepository;
+import org.lessons.java.spring_la_mia_pizzeria_security.models.Ingredient;
+import org.lessons.java.spring_la_mia_pizzeria_security.models.Offer;
+import org.lessons.java.spring_la_mia_pizzeria_security.models.Pizza;
+import org.lessons.java.spring_la_mia_pizzeria_security.repositories.IngredientRepository;
+import org.lessons.java.spring_la_mia_pizzeria_security.repositories.OfferRepository;
+import org.lessons.java.spring_la_mia_pizzeria_security.repositories.PizzaRepository;
 import org.springframework.stereotype.Service;
 
 @Service

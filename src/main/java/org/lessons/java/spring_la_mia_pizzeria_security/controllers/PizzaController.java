@@ -3,7 +3,6 @@ package org.lessons.java.spring_la_mia_pizzeria_security.controllers;
 import org.lessons.java.spring_la_mia_pizzeria_security.models.Offer;
 import org.lessons.java.spring_la_mia_pizzeria_security.models.Pizza;
 import org.lessons.java.spring_la_mia_pizzeria_security.services.PizzaService;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

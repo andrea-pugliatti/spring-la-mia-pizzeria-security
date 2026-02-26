@@ -25,7 +25,7 @@
                             </span>
                         </p>
 
-                        <div>
+                        <div sec:authorize="hasAuthority('ADMIN')">
                             <a class="btn btn-success btn-sm" th:href="@{/pizzas/edit/{id}(id = *{id})}">Modifica</a>
                             <div th:replace="~{fragments/modal :: trigger(*{id})}" />
                         </div>
@@ -40,8 +40,10 @@
         <div>
             <div class="d-flex gap-2 justify-content-between align-items-center">
                 <h2>Offerte speciali</h2>
-                <a th:href="@{{id}/create-offer(id = ${pizza.id})}" class="btn btn-primary">Crea una nuova offerta
-                    speciale</a>
+                <a sec:authorize="hasAuthority('ADMIN')" th:href="@{{id}/create-offer(id = ${pizza.id})}"
+                    class="btn btn-primary">
+                    Crea una nuova offerta speciale
+                </a>
             </div>
             <div class="text-center fs-4 fw-700" th:unless="${offers.size() > 0}">Non ci sono offerte disponibili</div>
 
@@ -52,7 +54,7 @@
                         <th scope="col">Offerta</th>
                         <th scope="col">Data di Inizio</th>
                         <th scope="col">Data di Fine</th>
-                        <th scope="col"></th>
+                        <th sec:authorize="hasAuthority('ADMIN')" scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -61,7 +63,7 @@
                         <td>[[*{title}]]</td>
                         <td>[[*{startDate}]]</td>
                         <td>[[*{endDate}]]</td>
-                        <td>
+                        <td sec:authorize="hasAuthority('ADMIN')">
                             <a class="btn btn-primary btn-sm" th:href="@{/offers/show/{id}(id = *{id})}">Scopri</a>
                             <a class="btn btn-success btn-sm" th:href="@{/offers/edit/{id}(id = *{id})}">Modifica</a>
                             <form style="display: inline;" th:action="@{/offers/delete/{id}(id = *{id})}" method="post">

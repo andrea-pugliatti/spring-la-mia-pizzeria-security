@@ -19,7 +19,7 @@
                         <a class="nav-link" th:classappend="${page == 'pizzas' ? 'active' : ''}"
                             href="/pizzas">Pizze</a>
                     </li>
-                    <li class="nav-item">
+                    <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
                         <a class="nav-link" th:classappend="${page == 'ingredients' ? 'active' : ''}"
                             href="/ingredients">Ingredienti</a>
                     </li>

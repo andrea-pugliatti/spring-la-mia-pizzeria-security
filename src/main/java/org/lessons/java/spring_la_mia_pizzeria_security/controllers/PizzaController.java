@@ -3,6 +3,7 @@ package org.lessons.java.spring_la_mia_pizzeria_security.controllers;
 import org.lessons.java.spring_la_mia_pizzeria_security.models.Offer;
 import org.lessons.java.spring_la_mia_pizzeria_security.models.Pizza;
 import org.lessons.java.spring_la_mia_pizzeria_security.services.PizzaService;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,7 +27,10 @@ public class PizzaController {
     }
 
     @GetMapping
-    public String index(Model model, @RequestParam(value = "q", required = false) String name) {
+    public String index(
+            Model model,
+            @RequestParam(value = "q", required = false) String name,
+            Authentication authentication) {
         model.addAttribute("pizzas", pizzaService.findAllOrByNameContaining(name));
         model.addAttribute("query", name);
         return "pizzas/index";

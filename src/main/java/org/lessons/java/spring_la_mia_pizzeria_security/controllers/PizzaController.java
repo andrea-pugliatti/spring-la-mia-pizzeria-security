@@ -29,8 +29,7 @@ public class PizzaController {
     @GetMapping
     public String index(
             Model model,
-            @RequestParam(value = "q", required = false) String name,
-            Authentication authentication) {
+            @RequestParam(value = "q", required = false) String name) {
         model.addAttribute("pizzas", pizzaService.findAllOrByNameContaining(name));
         model.addAttribute("query", name);
         return "pizzas/index";

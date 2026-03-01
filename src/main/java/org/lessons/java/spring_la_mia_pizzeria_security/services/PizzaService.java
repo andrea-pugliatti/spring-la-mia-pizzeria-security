@@ -4,25 +4,20 @@ import java.util.List;
 import java.util.Optional;
 
 import org.lessons.java.spring_la_mia_pizzeria_security.models.Ingredient;
-import org.lessons.java.spring_la_mia_pizzeria_security.models.Offer;
 import org.lessons.java.spring_la_mia_pizzeria_security.models.Pizza;
 import org.lessons.java.spring_la_mia_pizzeria_security.repositories.IngredientRepository;
-import org.lessons.java.spring_la_mia_pizzeria_security.repositories.OfferRepository;
 import org.lessons.java.spring_la_mia_pizzeria_security.repositories.PizzaRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PizzaService {
     private PizzaRepository pizzaRepository;
-    private OfferRepository offerRepository;
     private IngredientRepository ingredientRepository;
 
     public PizzaService(
             PizzaRepository pizzaRepository,
-            OfferRepository offerRepository,
             IngredientRepository ingredientRepository) {
         this.pizzaRepository = pizzaRepository;
-        this.offerRepository = offerRepository;
         this.ingredientRepository = ingredientRepository;
     }
 
@@ -70,11 +65,7 @@ public class PizzaService {
     }
 
     public void deleteById(Integer id) {
-        Pizza pizza = getById(id);
-        for (Offer offer : pizza.getOffers()) {
-            offerRepository.delete(offer);
-        }
-        pizzaRepository.delete(pizza);
+        pizzaRepository.deleteById(id);
     }
 
     public List<Ingredient> findAllIngredients() {

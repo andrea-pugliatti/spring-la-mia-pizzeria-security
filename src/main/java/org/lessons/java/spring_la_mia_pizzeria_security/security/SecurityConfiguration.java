@@ -6,6 +6,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -19,6 +20,7 @@ public class SecurityConfiguration {
             throws Exception {
         http.authorizeHttpRequests(requests -> requests
                 .requestMatchers("/").hasAnyAuthority("ADMIN", "USER")
+                .requestMatchers("/api/**").permitAll()
                 .requestMatchers("/pizzas").hasAnyAuthority("ADMIN", "USER")
                 .requestMatchers("/pizzas/create").hasAuthority("ADMIN")
                 .requestMatchers("/pizzas/edit").hasAuthority("ADMIN")
@@ -33,18 +35,18 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider(userDetailsService());
+    DaoAuthenticationProvider authenticationProvider(UserDetailsService userDetailsService) {
+        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider(userDetailsService);
 
         authenticationProvider.setPasswordEncoder(passwordEncoder());
 
         return authenticationProvider;
     }
 
-    @Bean
-    DatabaseUserDetailsService userDetailsService() {
-        return new DatabaseUserDetailsService();
-    }
+    // @Bean
+    // DatabaseUserDetailsService userDetailsService() {
+    // return new DatabaseUserDetailsService();
+    // }
 
     @Bean
     PasswordEncoder passwordEncoder() {

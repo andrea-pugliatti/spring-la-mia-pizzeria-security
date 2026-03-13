@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
     @GetMapping("/")
-    public String getIndex(Model model, Authentication authentication) {
+    public String index(Model model, Authentication authentication) {
         model.addAttribute("username", authentication.getName());
         return "index";
     }
